@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1212017925500165',
+                    xfbml: false,
+                    version: 'v2.8',
+                    status: true
+                });
+                FB.AppEvents.logPageView();
+            };
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                // js.src = "//connect.facebook.net/es_LA/sdk.js";
+                js.src = "//connect.facebook.net/en_US/sdk/debug.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+        </script>
+        <script>
+            function myFacebookLogin() {
+                FB.login(function () {
+                    /*
+                     var response = FB.api('/me', 'put', {message: 'Hello, world!!'}, function (r) {
+                     console.log("---------------------------");
+                     console.log(r);
+                     });
+                     */
+                    FB.api('/afphabitatperu', 'get', {}, function (response) {
+                        console.log(response);
+                    });
+
+                }, {scope: 'publish_actions'});
+            }
+        </script>
+        <input type="text" id="txtPath" />
+        <button onclick="myFacebookLogin()">Login with Facebook</button>
+        <div>TODO write content</div>
+
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+    </body>
+
+
+</html>
