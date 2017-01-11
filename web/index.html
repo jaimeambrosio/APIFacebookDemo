@@ -36,24 +36,35 @@ and open the template in the editor.
 
         </script>
         <script>
-            function myFacebookLogin() {
-                FB.login(function () {
-                    /*
-                     var response = FB.api('/me', 'put', {message: 'Hello, world!!'}, function (r) {
-                     console.log("---------------------------");
-                     console.log(r);
-                     });
-                     */
-                    FB.api('/afphabitatperu', 'get', {}, function (response) {
-                        console.log(response);
-                    });
+            function getData() {
 
-                }, {scope: 'publish_actions'});
+                /*
+                 var response = FB.api('/me', 'put', {message: 'Hello, world!!'}, function (r) {
+                 console.log("---------------------------");
+                 console.log(r);
+                 });
+                 */
+                FB.api('/afphabitatperu/posts', 'get', {fields: []}, function (res) {
+                    console.log(res);
+                });
+            }
+            function login() {
+                var inicio = 'publish_actions';
+                var datos_usuario = 'email,user_hometown,user_religion_politics,publish_actions,user_likes,user_status,user_about_me,user_location,user_tagged_places,user_birthday,user_photos,user_videos,user_education_history,user_posts,user_website,user_friends,user_relationship_details,user_work_history,user_games_activity,user_relationships';
+                var event_grupos_pag = 'ads_management,pages_manage_instant_articles,publish_pages,ads_read,pages_messaging,read_page_mailboxes,business_management,pages_messaging_phone_number,rsvp_event,manage_pages,pages_messaging_subscriptions,user_events,pages_manage_cta,pages_show_list,user_managed_groups,user_actions.books,user_actions.music,user_actions.video,user_actions.fitness,user_actions.news';
+                var todo = datos_usuario + ',' + event_grupos_pag;
+                
+                FB.login(function (response) {
+
+                }, {
+                    scope: inicio,
+                    return_scopes: true
+                });
             }
         </script>
         <input type="text" id="txtPath" />
-        <button onclick="myFacebookLogin()">Login with Facebook</button>
-        <div>TODO write content</div>
+        <button onclick="getData()">Test</button>
+        <button onclick="login()">Login</button>
 
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
